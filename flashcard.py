@@ -23,8 +23,10 @@ def load_vocabs(path: str) -> list[dict[str, str]]:
 
 def main():
     try:
-        if (len(sys.argv) > 1):
+        if (len(sys.argv) == 2):
             path: str = sys.argv[1]
+        elif (len(sys.argv) > 2):
+            raise Exception("Invalid number of arguments provided!")
         else:
             path: str = "lists/vocabs_1.md"
         vocabs_list: list[dict[str, str]] = load_vocabs(path)
