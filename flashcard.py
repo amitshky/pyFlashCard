@@ -28,7 +28,7 @@ def main():
         elif (len(sys.argv) > 2):
             raise Exception("Invalid number of arguments provided!")
         else:
-            path: str = "lists/vocabs_1.md"
+            path: str = "lists/vocabs.md"
         vocabs_list: list[dict[str, str]] = load_vocabs(path)
     except Exception as error:
         print(error)
@@ -36,7 +36,7 @@ def main():
 
     random.shuffle(vocabs_list)
     vocabs_list_len: int = len(vocabs_list)
-    index: int = 0
+    index: int = 0  # index of the current word
 
     rl.set_config_flags(rl.FLAG_WINDOW_RESIZABLE)
     rl.init_window(1200, 800, "Flash card")
@@ -47,6 +47,8 @@ def main():
     while not rl.window_should_close():
         rl.begin_drawing()
         rl.clear_background(rl.BLACK)
+
+
 
         FONT_SIZE_HEADER: int = 40
         FONT_SIZE_BODY: int = 30
