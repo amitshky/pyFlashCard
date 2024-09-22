@@ -48,8 +48,6 @@ def main():
         rl.begin_drawing()
         rl.clear_background(rl.BLACK)
 
-
-
         FONT_SIZE_HEADER: int = 40
         FONT_SIZE_BODY: int = 30
         rl.draw_text_ex(
