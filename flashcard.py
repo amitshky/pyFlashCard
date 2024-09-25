@@ -4,38 +4,32 @@ from pathlib import Path
 import random
 import pyray as rl
 from typing import TypedDict
+from textwrap import TextWrapper
 
 
-type vocabs_t = TypedDict("vocab", {"word": str, "meaning": list[str]})
-type vocabs_list_t = list[vocabs_t]
-type path_list_t = list[str]
+vocabs_t = TypedDict("vocab", {"word": str, "meaning": list[str]})
+vocabs_list_t = list[vocabs_t]
+path_list_t = list[str]
 
 
 def load_from_file(path: str) -> vocabs_list_t:
     vocabs_list: vocabs_list_t = []
-
+    wrapper = TextWrapper()
+    wrapper.width = 40
+    wrapper.subsequent_indent = "   "
     with open(path) as f:
-        for i, line in enumerate(f):
+        for line in f:
             split: list[str] = line.split(" - ")
             if len(split) != 2:
                 raise Exception(f"ERROR in file: \"{path}\"\nWrong format on line {i + 1}:\n{line}")
+            
+            meanings = []
+            for i, meaning in enumerate(split[1].split(";")):
+                meaning = f'{i+1}. {meaning.strip()}'
+                meanings.extend(wrapper.wrap(meaning))
 
-            vocab: vocabs_t = {"word": split[0], "meaning": []}
-            wrapped: str = ""
-            MAX_CHAR: int = 40
-            i: int = 0
-            # wrap text
-            for c in split[1]:
-                if i > MAX_CHAR and c == ' ':
-                    vocab["meaning"].append(wrapped)
-                    wrapped = ""
-                    i = 0
-                    continue
+            vocab: vocabs_t = {"word": split[0], "meaning": meanings}
 
-                wrapped += c
-                i += 1
-
-            vocab["meaning"].append(wrapped)
             vocabs_list.append(vocab)
 
     if len(vocabs_list) == 0:
