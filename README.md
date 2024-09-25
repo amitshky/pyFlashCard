@@ -11,7 +11,8 @@ python flashcard.py
 // OR
 python flashcard.py <path-to-vocabs-list-file>
 // OR
-python flashcard.py <path-to-vocabs-lists-directory> // you can iterate over the files in that directory
+// with this you can iterate over the files in that directory
+python flashcard.py <path-to-vocabs-lists-directory>
 ```
 
 # Usage
