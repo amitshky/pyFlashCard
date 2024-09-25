@@ -1,10 +1,18 @@
 import sys
+import os
+from pathlib import Path
 import random
 import pyray as rl
+from typing import TypedDict
 
 
-def load_vocabs(path: str) -> list[dict[str, str]]:
-    vocabs_list: list[dict[str, str]] = []
+type vocabs_t = TypedDict("vocab", {"word": str, "meaning": list[str]})
+type vocabs_list_t = list[vocabs_t]
+type path_list_t = list[str]
+
+
+def load_from_file(path: str) -> vocabs_list_t:
+    vocabs_list: vocabs_list_t = []
 
     with open(path) as f:
         for i, line in enumerate(f):
@@ -12,13 +20,55 @@ def load_vocabs(path: str) -> list[dict[str, str]]:
             if len(split) != 2:
                 raise Exception(f"ERROR in file: \"{path}\"\nWrong format on line {i + 1}:\n{line}")
 
-            vocab: dict[str, str] = {"word": split[0], "meaning": split[1]}
+            vocab: vocabs_t = {"word": split[0], "meaning": []}
+            wrapped: str = ""
+            MAX_CHAR: int = 40
+            i: int = 0
+            # wrap text
+            for c in split[1]:
+                if i > MAX_CHAR and c == ' ':
+                    vocab["meaning"].append(wrapped)
+                    wrapped = ""
+                    i = 0
+                    continue
+
+                wrapped += c
+                i += 1
+
+            vocab["meaning"].append(wrapped)
             vocabs_list.append(vocab)
 
     if len(vocabs_list) == 0:
         raise Exception("Vocabs list is empty")
 
     return vocabs_list
+
+
+def load_from_dir(path: str) -> tuple[vocabs_list_t, path_list_t]:
+    vocabs_list: vocabs_list_t = []
+    path_list: path_list_t = [path + f.name for f in Path(path).glob("*.*")]
+    path_list.sort()
+
+    if len(path_list) == 0:
+        raise Exception(f"The directory: \"{path}\" is empty")
+
+    vocabs_list = load_from_file(path_list[0])
+    return (vocabs_list, path_list)
+
+
+def load_vocabs(path: str) -> tuple[vocabs_list_t, path_list_t, int, int]:
+    vocabs_list: vocabs_list_t = []
+    path_list: path_list_t = []
+    if os.path.isdir(path):
+        vocabs_list, path_list = load_from_dir(path)
+    else:
+        path_list.append(path)
+        vocabs_list = load_from_file(path)
+
+    random.shuffle(vocabs_list)
+    vocabs_list_len: int = len(vocabs_list)
+    path_list_len: int = len(path_list)
+    return (vocabs_list, path_list, vocabs_list_len, path_list_len)
 
 
 def main():
@@ -28,18 +78,22 @@ def main():
         elif (len(sys.argv) > 2):
             raise Exception("Invalid number of arguments provided!")
         else:
-            path: str = "lists/vocabs.md"
-        vocabs_list: list[dict[str, str]] = load_vocabs(path)
+            path: str = "lists/"
+
+        vocabs_list: vocabs_list_t = []
+        path_list: path_list_t = []
+        vocabs_list, path_list, vocabs_list_len, path_list_len = load_vocabs(path)
+
     except Exception as error:
         print(error)
         return
 
-    random.shuffle(vocabs_list)
-    vocabs_list_len: int = len(vocabs_list)
     index: int = 0  # index of the current word
+    file_index: int = 0  # index of the current file
 
     rl.set_config_flags(rl.FLAG_WINDOW_RESIZABLE)
     rl.init_window(1200, 800, "Flash card")
+    rl.set_window_title(f"{path_list[file_index]} - Flash Card")
     rl.set_exit_key(rl.KEY_Q)
     FONT: rl.Font = rl.load_font("fonts/CONSOLA.TTF")
     FONT_ITALIC: rl.Font = rl.load_font("fonts/Consolas.ttf")
@@ -81,27 +135,27 @@ def main():
             vocabs_list = sorted(vocabs_list, key=lambda vocab: vocab["word"])
 
         elif rl.is_key_down(rl.KEY_SPACE):  # unhide the meanings of the words
-            MAX_CHAR: int = 50
-            WRAP_NUM: int = len(vocabs_list[index]["meaning"]) // MAX_CHAR
-            if (WRAP_NUM >= 1):  # string wrapping
-                for i in range(WRAP_NUM + 1):
-                    rl.draw_text_ex(
-                        FONT_ITALIC,
-                        vocabs_list[index]["meaning"][i * MAX_CHAR:(i + 1) * MAX_CHAR],
-                        rl.Vector2(10, (i + 1) * FONT_SIZE_HEADER + 10),
-                        FONT_SIZE_BODY,
-                        0.2,
-                        rl.GRAY
-                    )
-            else:
+            for i, meaning in enumerate(vocabs_list[index]["meaning"]):
                 rl.draw_text_ex(
                     FONT_ITALIC,
-                    vocabs_list[index]["meaning"],
-                    rl.Vector2(10, FONT_SIZE_HEADER + 10),
+                    meaning,
+                    rl.Vector2(10, (i + 1) * FONT_SIZE_HEADER + 10),
                     FONT_SIZE_BODY,
                     0.2,
                     rl.GRAY
                 )
+
+        elif rl.is_key_pressed(rl.KEY_N) and path_list_len > 1:
+            file_index = (file_index + 1) % path_list_len
+            rl.set_window_title(f"{path_list[file_index]} - Flash Card")
+            vocabs_list, _, vocabs_list_len, _ = load_vocabs(path_list[file_index])
+            index = 0
+
+        elif rl.is_key_pressed(rl.KEY_P) and path_list_len > 1:
+            file_index = (file_index - 1) % path_list_len
+            rl.set_window_title(f"{path_list[file_index]} - Flash Card")
+            vocabs_list, _, vocabs_list_len, _ = load_vocabs(path_list[file_index])
+            index = 0
 
         rl.end_drawing()
 

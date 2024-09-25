@@ -9,8 +9,6 @@ ingenuity - inventive skill; ingenuousness
 solipsism - the view that the self is the only reality
 arresting - striking; holding attention
 encompass - encircle
-run the gamut - to encircle all the possibilities
-run the gauntlet - to take part in a corporal punishment
 hold the line - maintain a position
 cogent - compelling
 disclaim - deny any claim
@@ -30,6 +28,4 @@ pragmatic - practical
 stolid - having/revealing little emotion
 equivocal - open to 2 or more interpretations; ambiguous
 foibles - a minor weakness or failing of character
-All the same - denotes contrast (eg: Her mother is tall. All the same she is short)
 concede - to acknowledge, often reluctantly, as being true (something tht is opposing)
-Even so - denote contrast (same as "even though")

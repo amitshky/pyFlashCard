@@ -10,6 +10,8 @@ Flash Card program written in python (using [Raylib](https://www.raylib.com/)) f
 python flashcard.py
 // OR
 python flashcard.py <path-to-vocabs-list-file>
+// OR
+python flashcard.py <path-to-vocabs-lists-directory> // you can iterate over the files in that directory
 ```
 
 # Usage
@@ -21,6 +23,8 @@ python flashcard.py <path-to-vocabs-list-file>
 - `L` last word
 - `S` Sort the list
 - `R` Randomize the list
+- `N` Next file (if a directory was provided in args)
+- `P` Previous file (if a directory was provided in args)
 
 The vocabs list should be in the following format (see `lists/` directory for examples):
 ```
