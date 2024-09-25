@@ -1,75 +1,20 @@
 import sys
-import os
-from pathlib import Path
+
 import random
 import pyray as rl
 from typing import TypedDict
-from textwrap import TextWrapper
-
+from src.loaders import load_vocabs
 
 vocabs_t = TypedDict("vocab", {"word": str, "meaning": list[str]})
 vocabs_list_t = list[vocabs_t]
 path_list_t = list[str]
 
 
-def load_from_file(path: str) -> vocabs_list_t:
-    vocabs_list: vocabs_list_t = []
-    wrapper = TextWrapper()
-    wrapper.width = 40
-    wrapper.subsequent_indent = "   "
-    with open(path) as f:
-        for line in f:
-            split: list[str] = line.split(" - ")
-            if len(split) != 2:
-                raise Exception(f"ERROR in file: \"{path}\"\nWrong format on line {i + 1}:\n{line}")
-            
-            meanings = []
-            for i, meaning in enumerate(split[1].split(";")):
-                meaning = f'{i+1}. {meaning.strip()}'
-                meanings.extend(wrapper.wrap(meaning))
-
-            vocab: vocabs_t = {"word": split[0], "meaning": meanings}
-
-            vocabs_list.append(vocab)
-
-    if len(vocabs_list) == 0:
-        raise Exception("Vocabs list is empty")
-
-    return vocabs_list
-
-
-def load_from_dir(path: str) -> tuple[vocabs_list_t, path_list_t]:
-    vocabs_list: vocabs_list_t = []
-    path_list: path_list_t = [path + f.name for f in Path(path).glob("*.*")]
-    path_list.sort()
-
-    if len(path_list) == 0:
-        raise Exception(f"The directory: \"{path}\" is empty")
-
-    vocabs_list = load_from_file(path_list[0])
-    return (vocabs_list, path_list)
-
-
-def load_vocabs(path: str) -> tuple[vocabs_list_t, path_list_t, int, int]:
-    vocabs_list: vocabs_list_t = []
-    path_list: path_list_t = []
-    if os.path.isdir(path):
-        vocabs_list, path_list = load_from_dir(path)
-    else:
-        path_list.append(path)
-        vocabs_list = load_from_file(path)
-
-    random.shuffle(vocabs_list)
-    vocabs_list_len: int = len(vocabs_list)
-    path_list_len: int = len(path_list)
-    return (vocabs_list, path_list, vocabs_list_len, path_list_len)
-
-
 def main():
     try:
-        if (len(sys.argv) == 2):
+        if len(sys.argv) == 2:
             path: str = sys.argv[1]
-        elif (len(sys.argv) > 2):
+        elif len(sys.argv) > 2:
             raise Exception("Invalid number of arguments provided!")
         else:
             path: str = "lists/"
@@ -77,7 +22,6 @@ def main():
         vocabs_list: vocabs_list_t = []
         path_list: path_list_t = []
         vocabs_list, path_list, vocabs_list_len, path_list_len = load_vocabs(path)
-
     except Exception as error:
         print(error)
         return
@@ -104,7 +48,7 @@ def main():
             rl.Vector2(10, 10),
             FONT_SIZE_HEADER,
             0.2,
-            rl.GREEN
+            rl.GREEN,
         )
 
         # next word
@@ -136,7 +80,7 @@ def main():
                     rl.Vector2(10, (i + 1) * FONT_SIZE_HEADER + 10),
                     FONT_SIZE_BODY,
                     0.2,
-                    rl.GRAY
+                    rl.GRAY,
                 )
 
         elif rl.is_key_pressed(rl.KEY_N) and path_list_len > 1:
