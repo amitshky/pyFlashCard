@@ -1,4 +1,7 @@
 lists/*
-!lists/vocabs.md
-!lists/vocabs2.md
+!lists/vocabs.txt
+!lists/hard.yml
+!lists/high_frequency_gre.yml
+!lists/intermediate.yml
+!lists/warmup.yml
 __pycache__/
