@@ -1,3 +1,4 @@
 lists/*
 !lists/vocabs.md
 !lists/vocabs2.md
+__pycache__/

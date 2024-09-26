@@ -1,13 +1,8 @@
 import sys
-
 import random
 import pyray as rl
-from typing import TypedDict
 from src.loaders import load_vocabs
-
-vocabs_t = TypedDict("vocab", {"word": str, "meaning": list[str]})
-vocabs_list_t = list[vocabs_t]
-path_list_t = list[str]
+from src._types import vocabs_list_t, path_list_t
 
 
 def main():
@@ -83,12 +78,14 @@ def main():
                     rl.GRAY,
                 )
 
+        # next file (if directory is provided in the args)
         elif rl.is_key_pressed(rl.KEY_N) and path_list_len > 1:
             file_index = (file_index + 1) % path_list_len
             rl.set_window_title(f"{path_list[file_index]} - Flash Card")
             vocabs_list, _, vocabs_list_len, _ = load_vocabs(path_list[file_index])
             index = 0
 
+        # previous file (if directory is provided in the args)
         elif rl.is_key_pressed(rl.KEY_P) and path_list_len > 1:
             file_index = (file_index - 1) % path_list_len
             rl.set_window_title(f"{path_list[file_index]} - Flash Card")

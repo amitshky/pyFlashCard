@@ -1,7 +1,6 @@
 import random
 import yaml
 import os
-from textwrap import TextWrapper
 from glob import glob
 
 try:
@@ -10,18 +9,7 @@ except:
     from yaml import Loader
 
 from ._types import vocabs_list_t, vocabs_t, path_list_t
-
-
-# TODO: move this somewhere else and set wrapper constants in another file
-def wrap_meanings(meaning_string: list[str]) -> list[str]:
-    wrapper = TextWrapper()
-    wrapper.width = 40
-    wrapper.subsequent_indent = "   "
-    meanings = []
-    for i, meaning in enumerate(meaning_string.split(";")):
-        meaning = f"{i+1}. {meaning.strip()}"
-        meanings.extend(wrapper.wrap(meaning))
-    return meanings
+from .utils import wrap_meanings
 
 
 def load_text(path: str) -> vocabs_list_t:
@@ -47,6 +35,7 @@ def load_text(path: str) -> vocabs_list_t:
 def load_yml(path: str) -> vocabs_list_t:
     with open(path, encoding="utf-8") as f:
         file_contents = yaml.load(f, Loader)
+
     vocabs_list: vocabs_list_t = [
         {
             "word": item["word"],
@@ -65,16 +54,13 @@ def load_from_file(path: str) -> vocabs_list_t:
 
 
 def load_from_dir(path: str) -> tuple[vocabs_list_t, path_list_t]:
-    vocabs_list: vocabs_list_t = []
     path_list: path_list_t = glob(os.path.join(path, "*.*"))
     path_list.sort()
 
     if len(path_list) == 0:
         raise Exception(f'The directory: "{path}" is empty')
 
-    vocabs_list = []
-    for path in path_list:
-        vocabs_list.extend(load_from_file(path))
+    vocabs_list: vocabs_list_t = load_from_file(path_list[0])
     return (vocabs_list, path_list)
 
 
