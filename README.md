@@ -31,8 +31,9 @@ python flashcard.py <path-to-vocabs-lists-directory>
 - `N` Next file (if a directory was provided in args)
 - `P` Previous file (if a directory was provided in args)
 
-The vocabs list should be in the following format (see `lists/` directory for examples):
+The vocabs list should be in the following format if it is a simple text file (see `lists/` directory for examples):
 
 ```
 word - meaning
 ```
+Alternatively, you can use YAML files as well (see `lists/` directory for examples).
