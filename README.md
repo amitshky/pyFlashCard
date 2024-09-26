@@ -5,7 +5,7 @@ Flash Card program written in python (using [Raylib](https://www.raylib.com/)) f
 # Prerequisites
 
 - [Python 3](https://www.python.org/downloads/)
-- Install requirements: `pip install -e requirements.txt`
+- Install requirements: `pip install -r requirements.txt`
 
 # Run
 
