@@ -1,11 +1,14 @@
 # pyFlashCard
+
 Flash Card program written in python (using [Raylib](https://www.raylib.com/)) for vocabs.
 
 # Prerequisites
+
 - [Python 3](https://www.python.org/downloads/)
-- [Raylib (Python binding for raylib)](https://pypi.org/project/raylib/) (`pip install setuptools raylib`)
+- Install requirements: `pip install -e requirements.txt`
 
 # Run
+
 ```
 python flashcard.py
 // OR
@@ -16,6 +19,7 @@ python flashcard.py <path-to-vocabs-lists-directory>
 ```
 
 # Usage
+
 - `Q` to quit
 - `Spacebar` Show the meaning of the word
 - `J` next word
@@ -28,6 +32,7 @@ python flashcard.py <path-to-vocabs-lists-directory>
 - `P` Previous file (if a directory was provided in args)
 
 The vocabs list should be in the following format (see `lists/` directory for examples):
+
 ```
 word - meaning
 ```
