@@ -61,6 +61,9 @@ def main():
         elif rl.is_key_pressed(rl.KEY_L):  # last word
             index = vocabs_list_len - 1
 
+        elif rl.is_key_pressed(rl.KEY_F):
+            rl.toggle_fullscreen()
+
         # randomize the list
         elif rl.is_key_pressed(rl.KEY_R) or rl.is_key_pressed(rl.KEY_I):
             random.shuffle(vocabs_list)
