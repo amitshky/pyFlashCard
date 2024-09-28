@@ -26,6 +26,7 @@ python flashcard.py <path-to-vocabs-lists-directory>
 - `K` previous word
 - `H` first word
 - `L` last word
+- `F` Toggle fullscreen
 - `S or O` Sort the list
 - `R or I` Randomize the list
 - `N` Next file (if a directory was provided in args)
