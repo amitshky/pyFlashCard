@@ -20,14 +20,14 @@ python flashcard.py <path-to-vocabs-lists-directory>
 
 # Usage
 
-- `Q` to quit
+- `Q` quit
 - `Spacebar` Show the meaning of the word
 - `J` next word
 - `K` previous word
 - `H` first word
 - `L` last word
-- `S` Sort the list
-- `R` Randomize the list
+- `S or O` Sort the list
+- `R or I` Randomize the list
 - `N` Next file (if a directory was provided in args)
 - `P` Previous file (if a directory was provided in args)
 
@@ -35,5 +35,7 @@ The vocabs list should be in the following format if it is a simple text file (s
 
 ```
 word - meaning
+another word - meaning
 ```
+
 Alternatively, you can use YAML files as well (see `lists/` directory for examples).

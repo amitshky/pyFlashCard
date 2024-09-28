@@ -61,10 +61,12 @@ def main():
         elif rl.is_key_pressed(rl.KEY_L):  # last word
             index = vocabs_list_len - 1
 
-        elif rl.is_key_pressed(rl.KEY_R):  # randomize the list
+        # randomize the list
+        elif rl.is_key_pressed(rl.KEY_R) or rl.is_key_pressed(rl.KEY_I):
             random.shuffle(vocabs_list)
 
-        elif rl.is_key_pressed(rl.KEY_S):  # sort the list
+        # sort the list
+        elif rl.is_key_pressed(rl.KEY_S) or rl.is_key_pressed(rl.KEY_O):
             vocabs_list = sorted(vocabs_list, key=lambda vocab: vocab["word"])
 
         elif rl.is_key_down(rl.KEY_SPACE):  # unhide the meanings of the words
