@@ -101,12 +101,12 @@
 - word: abstemious
   difficulty: 630
   frequency: 5293
-  definition: marked by temperance in indulgence
+  definition: marked by temperance in indulgence; marked by restraint especially in the eating of food or drinking of alcohol
   language: en
 - word: commensurate
   difficulty: 600
   frequency: 10000
-  definition: corresponding in size or degree or extent
+  definition: corresponding in size or degree or extent; proportionate
   language: en
 - word: distill
   difficulty: 470
@@ -116,7 +116,7 @@
 - word: grandiloquent
   difficulty: 600
   frequency: 4342
-  definition: lofty in style
+  definition: lofty in style; pretentious (making unjustified claims)
   language: en
 - word: levity
   difficulty: 600
@@ -211,12 +211,12 @@
 - word: dogmatic
   difficulty: 570
   frequency: 18647
-  definition: pertaining to a code of beliefs accepted as authoritative
+  definition: pertaining to a code of beliefs accepted as authoritative; referring to someone with strongly held opinions
   language: en
 - word: harangue
   difficulty: 600
   frequency: 26976
-  definition: a loud bombastic declamation expressed with strong emotion
+  definition: a loud bombastic declamation expressed with strong emotion; a ranting speech
   language: en
 - word: luminous
   difficulty: 440
@@ -286,7 +286,7 @@
 - word: ebullient
   difficulty: 580
   frequency: 5083
-  definition: joyously unrestrained
+  definition: joyously unrestrained; having or showing liveliness and enthusiasm
   language: en
 - word: iconoclastic
   difficulty: 570

@@ -1,7 +1,6 @@
 indignant - wrathful
 malign - to make evil, harmful statements; to show hatred
 munificent - generous
-mendacious - lying
 ersatz - not genuine; fake
 despot - a ruler with absolue power
 nugatory - of little or no importance
@@ -9,7 +8,6 @@ ingenuity - inventive skill; ingenuousness
 solipsism - the view that the self is the only reality
 arresting - striking; holding attention
 encompass - encircle
-hold the line - maintain a position
 cogent - compelling
 disclaim - deny any claim
 disinterested - free of bias; impartial
@@ -29,3 +27,39 @@ stolid - having/revealing little emotion
 equivocal - open to 2 or more interpretations; ambiguous
 foibles - a minor weakness or failing of character
 concede - to acknowledge, often reluctantly, as being true (something tht is opposing)
+stigma - condemn; defame
+castigate - punish
+abridge - shorten
+preternatural - beyond natural or normal
+perscient - ability to fortell the future
+preordain - determine an outcome in advance
+pithy - concise
+venerate - treat with deep respect
+lionize - grant someone celebrity status
+acerbic - sharp or sarcastic
+serendipity - happy occurence
+vicissitude - unhappy occurence
+obtuse - slow-witted
+askance - look of diapproval
+proponent - advocate
+subservient - subordinate
+lackey - subordinate
+mercenery - paid for their efforts
+demarcate - set boundaries
+whitewash - coverup unpleasant facts
+improvident - not providing for the future
+inimical - harmful or hostile
+impecunious - poor or destitute
+pallid - pale
+aghast - horrified
+mendaciously - dishonestly
+roundly - empathically
+panned - reviewed negatively
+listlessly - unenergetically
+homily - religious lecture
+catharsis - emotional release
+run the gamut - to encircle all the possibilities
+run the gauntlet - to take part in a corporal punishment
+All the same - denotes contrast (eg: Her mother is tall. All the same she is short)
+Even so - denote contrast (same as "even though")
+hold the line - maintain a position
