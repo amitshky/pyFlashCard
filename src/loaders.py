@@ -35,6 +35,8 @@ def load_text(path: str) -> vocabs_list_t:
 def load_yml(path: str) -> vocabs_list_t:
     with open(path, encoding="utf-8") as f:
         file_contents = yaml.load(f, Loader)
+        if not file_contents:
+            raise Exception("Vocabs list is empty")
 
     vocabs_list: vocabs_list_t = [
         {
