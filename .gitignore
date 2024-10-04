@@ -1,5 +1,5 @@
 lists/*
-!lists/vocabs.txt
+!lists/example.txt
 !lists/hard.yml
 !lists/high_frequency_gre.yml
 !lists/intermediate.yml
