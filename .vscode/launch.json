@@ -11,7 +11,7 @@
 			"program": "flashcard.py",
 			"console": "integratedTerminal",
 			"args": [
-				"lists/"
+				"lists/vocabs.yml"
 			]
 		}
 	]

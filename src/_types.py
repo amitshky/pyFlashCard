@@ -6,6 +6,8 @@ vocabs_t = TypedDict(
     {
         "word": str,
         "meaning": list[str],
+        "marked": bool,
+        "to_export": str,
     },
     total=False,
 )

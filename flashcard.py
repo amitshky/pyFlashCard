@@ -97,6 +97,15 @@ def main():
             vocabs_list, _, vocabs_list_len, _ = load_vocabs(path_list[file_index])
             index = 0
 
+        elif rl.is_key_pressed(rl.KEY_M):
+            vocabs_list[index]["marked"] = True
+
+        elif rl.is_key_pressed(rl.KEY_X):
+            with open("exported.yml", "w") as file:
+                for content in vocabs_list:
+                    export = f'- word: {content["word"]}\n  definition: {content["to_export"]}\n  marked: {content["marked"]}\n'
+                    file.write(export)
+
         rl.end_drawing()
 
     rl.unload_font(FONT)

@@ -42,6 +42,8 @@ def load_yml(path: str) -> vocabs_list_t:
         {
             "word": item["word"],
             "meaning": wrap_meanings(item["definition"]),
+            "marked": item["marked"] if "marked" in item else False,
+            "to_export": item["definition"],  # to make it easier to export definitions (ignore wrapping)
         }
         for item in file_contents
     ]
