@@ -23,7 +23,7 @@ def load_text(path: str) -> vocabs_list_t:
                     f'ERROR in file: "{path}"\nWrong format on line {i + 1}:\n{line}'
                 )
             meanings = wrap_meanings(split[1])
-            vocab: vocabs_t = {"word": split[0], "meaning": meanings}
+            vocab: vocabs_t = {"word": split[0], "meaning": meanings, "marked": False}
 
             vocabs_list.append(vocab)
 
@@ -43,7 +43,7 @@ def load_yml(path: str) -> vocabs_list_t:
             "word": item["word"],
             "meaning": wrap_meanings(item["definition"]),
             "marked": item["marked"] if "marked" in item else False,
-            "to_export": item["definition"],  # to make it easier to export definitions (ignore wrapping)
+            "to_export": item["definition"],  # to make it easier to export definitions (to ignore text wrap)
         }
         for item in file_contents
     ]

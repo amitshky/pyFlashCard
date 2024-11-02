@@ -9,6 +9,7 @@ def main():
     try:
         if len(sys.argv) == 2:
             path: str = sys.argv[1]
+            is_yml = path.split(".")[-1] == "yml"
         elif len(sys.argv) > 2:
             raise Exception("Invalid number of arguments provided!")
         else:
@@ -97,19 +98,21 @@ def main():
             vocabs_list, _, vocabs_list_len, _ = load_vocabs(path_list[file_index])
             index = 0
 
-        # mark or unmark the word
-        # makred words are colored Yellow
-        elif rl.is_key_pressed(rl.KEY_M):
-            vocabs_list[index]["marked"] = not vocabs_list[index]["marked"]
+        elif is_yml:
+            # mark or unmark the word
+            # makred words are colored Yellow
+            if rl.is_key_pressed(rl.KEY_M):
+                vocabs_list[index]["marked"] = not vocabs_list[index]["marked"]
 
-        elif rl.is_key_pressed(rl.KEY_X):
-            with open("exported.yml", "w") as file:
-                for content in vocabs_list:
-                    if content["marked"]:
-                        export = f'- word: {content["word"]}\n  definition: {content["to_export"]}\n  marked: {content["marked"]}\n'
-                        file.write(export)
+            elif rl.is_key_pressed(rl.KEY_X):
+                filename = "exported.yml"
+                with open(filename, "w") as file:
+                    for content in vocabs_list:
+                        if content["marked"]:
+                            export = f'- word: {content["word"]}\n  definition: {content["to_export"]}\n  marked: {content["marked"]}\n'
+                            file.write(export)
 
-            rl.trace_log(rl.LOG_INFO, "Exported marked words to \"exported.yml\"")
+                rl.trace_log(rl.LOG_INFO, "Exported marked words to \"filename.yml\"")
 
         rl.end_drawing()
 
