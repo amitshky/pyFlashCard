@@ -34,7 +34,7 @@ python flashcard.py <path-to-vocabs-lists-directory>
 
 The following only words for YAML files:
 - `M` Mark or Unmark a word (marked words are colored yellow)
-- `X` Export marked words (words are exported to a file named `exported.yml` in the root directory (directory where `flashcard.y` is))
+- `X` Export marked words (words are exported to a file named `exported.yml` in the root directory (directory where `flashcard.py` is))
 
 The vocabs list should be in the following format if it is a simple text file (see `lists/` directory for examples):
 
