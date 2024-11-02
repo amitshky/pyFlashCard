@@ -109,7 +109,7 @@ def main():
                 with open(filename, "w") as file:
                     for content in vocabs_list:
                         if content["marked"]:
-                            export = f'- word: {content["word"]}\n  definition: {content["to_export"]}\n  marked: {content["marked"]}\n'
+                            export = f'- word: {content["word"]}\n  definition: {content["to_export"]}\n'
                             file.write(export)
 
                 rl.trace_log(rl.LOG_INFO, "Exported marked words to \"filename.yml\"")
