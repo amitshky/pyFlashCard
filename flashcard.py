@@ -43,7 +43,7 @@ def main():
             rl.Vector2(10, 10),
             FONT_SIZE_HEADER,
             0.2,
-            rl.GREEN,
+            rl.GREEN if not vocabs_list[index]["marked"] else rl.YELLOW,
         )
 
         # next word
@@ -97,14 +97,19 @@ def main():
             vocabs_list, _, vocabs_list_len, _ = load_vocabs(path_list[file_index])
             index = 0
 
+        # mark or unmark the word
+        # makred words are colored Yellow
         elif rl.is_key_pressed(rl.KEY_M):
-            vocabs_list[index]["marked"] = True
+            vocabs_list[index]["marked"] = not vocabs_list[index]["marked"]
 
         elif rl.is_key_pressed(rl.KEY_X):
             with open("exported.yml", "w") as file:
                 for content in vocabs_list:
-                    export = f'- word: {content["word"]}\n  definition: {content["to_export"]}\n  marked: {content["marked"]}\n'
-                    file.write(export)
+                    if content["marked"]:
+                        export = f'- word: {content["word"]}\n  definition: {content["to_export"]}\n  marked: {content["marked"]}\n'
+                        file.write(export)
+
+            rl.trace_log(rl.LOG_INFO, "Exported marked words to \"exported.yml\"")
 
         rl.end_drawing()
 
