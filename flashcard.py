@@ -112,7 +112,7 @@ def main():
                             export = f'- word: {content["word"]}\n  definition: {content["to_export"]}\n'
                             file.write(export)
 
-                rl.trace_log(rl.LOG_INFO, "Exported marked words to \"filename.yml\"")
+                rl.trace_log(rl.LOG_INFO, f"Exported marked words to \"{filename}\"")
 
         rl.end_drawing()
 
